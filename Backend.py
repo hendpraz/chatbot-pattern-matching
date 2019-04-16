@@ -5,6 +5,16 @@ questionDB = []
 
 def kmp(str):
     #knuth-morris-pratt
+    max = 0
+    idx = -1
+    for i in range(numOfQuestion):
+        # Kode
+        # x =
+        if(x > max):
+            max = x
+            idx = i
+
+    return max
 
 def regex(str):
     #Regular expression
@@ -15,6 +25,16 @@ def regex(str):
 
 def bm(str):
     #boyer moore
+    max = 0
+    idx = -1
+    for i in range(numOfQuestion):
+        # Kode
+        # x =
+        if(x > max):
+            max = x
+            idx = i
+            
+    return max
 
 def otherFunc(str):
     #other algorithm for pattern matching
