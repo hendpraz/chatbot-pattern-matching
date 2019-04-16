@@ -1,8 +1,23 @@
-def kmp(s1, s2):
+import re
 
+numOfQuestion = 0
+questionDB = []
 
-def regex(s1, s2):
+def kmp(str):
+    #knuth-morris-pratt
 
-def bm(s1, s2):
+def regex(str):
+    #Regular expression
+    for i in range(numOfQuestion)
+        #Change this later
+        x = re.search(str,questionDB[i])
+        #print(x.string)
 
-def otherFunc(s1,s2):
+def bm(str):
+    #boyer moore
+
+def otherFunc(str):
+    #other algorithm for pattern matching
+
+def initDB():
+    #Add questions to database
