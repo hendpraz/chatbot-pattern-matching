@@ -2,45 +2,72 @@ import re
 
 numOfQuestion = 0
 questionDB = []
+answerDB = []
 
-def kmp(str):
+def knuthMorrisPratt(str1, str2):
+
+def maxKMP(string):
     #knuth-morris-pratt
     max = 0
     idx = -1
     for i in range(numOfQuestion):
         # Kode
-        # x =
+        x = knuthMorrisPratt(string,questionDB[i])
         if(x > max):
             max = x
             idx = i
 
-    return max
+    return (max, idx)
 
-def regex(str):
+def regex(string):
     #Regular expression
     for i in range(numOfQuestion)
         #Change this later
-        x = re.search(str,questionDB[i])
+        x = re.search(string,questionDB[i])
         #print(x.string)
 
-def bm(str):
+def boyerMoore(str1,str2):
+
+def maxBM(str):
     #boyer moore
     max = 0
     idx = -1
     for i in range(numOfQuestion):
         # Kode
-        # x =
+        x = boyerMoore(string,questionDB[i])
         if(x > max):
             max = x
             idx = i
 
-    return max
+    return (max, idx)
 
-def otherFunc(str):
+def otherFunc(string):
     #other algorithm for pattern matching
 
 def initDB():
     #Add questions to database
     global numOfQuestion
-    numOfQuestion = 10
-    questionDB.append("Siapa namamu")
+    numOfQuestion = 1
+    questionDB.append("Siapa nama kamu?")
+    answerDB.append("Aku Zettary")
+
+# Main program #
+initDB()
+string = str(input())
+max, idx = maxKMP(string)
+if(max >= 90):
+    print(answerDB[idx])
+else:
+    max, idx = maxBM(string)
+    if(max >= 90):
+        print(answerDB[idx])
+    else:
+        max,idx = regex(string)
+        if(max >= 90):
+            print(answerDB[idx])
+        else:
+            idx1, idx2, idx3 = otherFunc(string)
+            print("Mungkin maksud Anda :")
+            print(answerDB[idx1])
+            print(answerDB[idx2])
+            print(answerDB[idx3])
