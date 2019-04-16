@@ -69,5 +69,7 @@ else:
             idx1, idx2, idx3 = otherFunc(string)
             print("Mungkin maksud Anda :")
             print(answerDB[idx1])
-            print(answerDB[idx2])
-            print(answerDB[idx3])
+            if(idx1 != idx2):
+                print(answerDB[idx2])
+            if((idx2 != idx1) and (idx2 != idx3)):
+                print(answerDB[idx3])
