@@ -33,7 +33,7 @@ def bm(str):
         if(x > max):
             max = x
             idx = i
-            
+
     return max
 
 def otherFunc(str):
@@ -41,3 +41,6 @@ def otherFunc(str):
 
 def initDB():
     #Add questions to database
+    global numOfQuestion
+    numOfQuestion = 10
+    questionDB.append("Siapa namamu")
