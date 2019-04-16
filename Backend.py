@@ -5,6 +5,7 @@ questionDB = []
 answerDB = []
 
 def knuthMorrisPratt(str1, str2):
+    return 90
 
 def maxKMP(string):
     #knuth-morris-pratt
@@ -21,12 +22,14 @@ def maxKMP(string):
 
 def regex(string):
     #Regular expression
-    for i in range(numOfQuestion)
+    #for i in range(numOfQuestion):
         #Change this later
-        x = re.search(string,questionDB[i])
+        #x = re.search(string,questionDB[i])
         #print(x.string)
+    return 90, 0
 
 def boyerMoore(str1,str2):
+    return 90
 
 def maxBM(str):
     #boyer moore
@@ -43,6 +46,7 @@ def maxBM(str):
 
 def otherFunc(string):
     #other algorithm for pattern matching
+    return (0,0,0)
 
 def initDB():
     #Add questions to database
@@ -57,14 +61,17 @@ string = str(input())
 max, idx = maxKMP(string)
 if(max >= 90):
     print(answerDB[idx])
+    print("Answered with Knuth-Morris-Pratt")
 else:
     max, idx = maxBM(string)
     if(max >= 90):
         print(answerDB[idx])
+        print("Answered with Boyer-Moore")
     else:
         max,idx = regex(string)
         if(max >= 90):
             print(answerDB[idx])
+            print("Answered with Regular Expression")
         else:
             idx1, idx2, idx3 = otherFunc(string)
             print("Mungkin maksud Anda :")
