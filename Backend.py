@@ -46,7 +46,9 @@ def maxBM(str):
 
 def otherFunc(string):
     #other algorithm for pattern matching
-    return (0,0,0)
+    max = 0
+    idx = -1
+    return (max, 0)
 
 def initDB():
     #Add questions to database
@@ -58,22 +60,22 @@ def initDB():
 # Main program #
 initDB()
 string = str(input())
-max, idx = maxKMP(string)
+max, idx1 = maxKMP(string)
 if(max >= 90):
     print(answerDB[idx])
     print("Answered with Knuth-Morris-Pratt")
 else:
-    max, idx = maxBM(string)
+    max, idx2 = maxBM(string)
     if(max >= 90):
         print(answerDB[idx])
         print("Answered with Boyer-Moore")
     else:
-        max,idx = regex(string)
+        max,idx3 = regex(string)
         if(max >= 90):
             print(answerDB[idx])
             print("Answered with Regular Expression")
         else:
-            idx1, idx2, idx3 = otherFunc(string)
+            #max, idx4 = otherFunc(string)
             print("Mungkin maksud Anda :")
             print(answerDB[idx1])
             if(idx1 != idx2):
