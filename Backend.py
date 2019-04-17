@@ -1,8 +1,14 @@
 import re
+from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+#from ntlk.corpus import stopwords
+from ntlk.tokenize import word_tokenize
 
 numOfQuestion = 0
 questionDB = []
 answerDB = []
+
+factory = StopWordRemoverFactory()
+stopwords = factory.get_stop_words()
 
 def knuthMorrisPratt(str1, str2):
     return 90
@@ -58,7 +64,11 @@ def initDB():
     answerDB.append("Aku Zettary")
 
 def removeStopWords(string):
-    
+    filteredString = ""
+    wordTokens = word_tokenize(string)
+    for w in wordTokens
+        if not w in stopwords
+            filteredString = filteredString + w
 
 # Main program #
 initDB()
