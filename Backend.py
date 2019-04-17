@@ -57,9 +57,13 @@ def initDB():
     questionDB.append("Siapa nama kamu?")
     answerDB.append("Aku Zettary")
 
+def removeStopWords(string):
+    
+
 # Main program #
 initDB()
 string = str(input())
+string = removeStopWords(string)
 max, idx1 = maxKMP(string)
 if(max >= 90):
     print(answerDB[idx])
