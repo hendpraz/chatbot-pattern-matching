@@ -1,5 +1,6 @@
 import re
-from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+from Stopwords import stopwords
+#from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 #from ntlk.corpus import stopwords
 #from ntlk.tokenize import word_tokenize
 
@@ -7,8 +8,8 @@ numOfQuestion = 0
 questionDB = []
 answerDB = []
 
-factory = StopWordRemoverFactory()
-stopwords = factory.get_stop_words()
+#factory = StopWordRemoverFactory()
+#stopwords = factory.get_stop_words()
 
 def borderFunctionKMP(str, m):
     suffLen = 0
@@ -30,13 +31,13 @@ def borderFunctionKMP(str, m):
 
     return border
 
-def knuthMorrisPratt(string1, txt):
+def knuthMorrisPrat(string1, txt):
     tokenizedString = string1.split()
     countMatch = 0
-    totalLength = len(txt)
+    totalLength = len(txt) - 1 #Dikurangi tanda tanya
     for pattern in tokenizedString:
         m = len(pattern)
-        n = len(txt)
+        n = len(txt) - 1 # Dikurangi tanda tanya
 
         border = borderFunctionKMP(pattern,m)
         i = 0
@@ -59,12 +60,12 @@ def knuthMorrisPratt(string1, txt):
     return (countMatch * 100.0 / totalLength)
 
 def maxKMP(string):
-    #knuth-morris-pratt
+    #knuth-morris-Prat
     max = 0
     idx = -1
     for i in range(numOfQuestion):
         # Kode
-        x = knuthMorrisPratt(string,questionDB[i])
+        x = knuthMorrisPrat(string,questionDB[i])
         if(x > max):
             max = x
             idx = i
@@ -108,6 +109,20 @@ def initDB():
     questionDB.append("Siapa nama ?")
     answerDB.append("Aku Zettary")
 
+    quest = open("pertanyaan.txt","r")
+    for line in quest:
+        numOfQuestion = numOfQuestion + 1
+        questionDB.append(line.strip())
+
+    ans = open("jawaban.txt","r")
+    for line in ans:
+        answerDB.append(line.strip())
+
+    #print(questionDB)
+    #print(answerDB)
+    quest.close()
+    ans.close()
+
 def removeStopWords(string):
     filteredString = ""
     wordTokens = string.split()
@@ -138,22 +153,22 @@ while(True):
     # DEBUG:
     #print("Filtered string:")
     #print(string)
-    max, idx1 = maxKMP(string)
-    #print("max = " + str(max))
+    kmpMaxVal, kmpIdx = maxKMP(string)
+    #print("max = " + str(kmpMaxVal))
     #print("idx = " + str(idx1))
-    if(max >= 90):
-        talk(answerDB[idx1])
-        #print("Answered with Knuth-Morris-Pratt")
+    if(kmpMaxVal >= 90):
+        talk(answerDB[kmpIdx])
+        #print("Answered with Knuth-Morris-Prat")
     else:
-        max, idx2 = maxBM(string)
-        if(max >= 90):
-            print(answerDB[idx2])
-            print("Answered with Boyer-Moore")
+        bmMaxVal, bmIdx = maxBM(string)
+        if(bmMaxVal >= 90):
+            print(answerDB[bmIdx])
+            #print("Answered with Boyer-Moore")
         else:
-            max,idx3 = regex(string)
-            if(max >= 90):
+            reMaxVal, reIdx = regex(string)
+            if(reMaxVal >= 90):
                 print(answerDB[idx3])
-                print("Answered with Regular Expression")
+                #print("Answered with Regular Expression")
             else:
                 #max, idx4 = otherFunc(string)
                 print("Mungkin maksud Anda :")
