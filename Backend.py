@@ -51,7 +51,7 @@ def otherFunc(string):
     return (max, 0)
 
 def initDB():
-    #Add questions to database
+    #Add questions and answers to database
     global numOfQuestion
     numOfQuestion = 1
     questionDB.append("Siapa nama kamu?")
