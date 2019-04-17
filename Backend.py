@@ -66,7 +66,7 @@ def maxKMP(string):
     for i in range(numOfQuestion):
         # Kode
         x = knuthMorrisPrat(string,questionDB[i])
-        if(x > max):
+        if(x >= max):
             max = x
             idx = i
 
@@ -112,7 +112,7 @@ def initDB():
     quest = open("pertanyaan.txt","r")
     for line in quest:
         numOfQuestion = numOfQuestion + 1
-        questionDB.append(line.strip())
+        questionDB.append(removeStopWords(line.strip()))
 
     ans = open("jawaban.txt","r")
     for line in ans:
@@ -155,7 +155,7 @@ while(True):
     #print(string)
     kmpMaxVal, kmpIdx = maxKMP(string)
     #print("max = " + str(kmpMaxVal))
-    #print("idx = " + str(idx1))
+    #print("idx = " + str(kmpIdx))
     if(kmpMaxVal >= 90):
         talk(answerDB[kmpIdx])
         #print("Answered with Knuth-Morris-Prat")
