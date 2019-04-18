@@ -33,32 +33,63 @@ def borderFunctionKMP(str, m):
     return border
 
 def knuthMorrisPrat(string1, txt):
-    tokenizedString = string1.split()
-    countMatch = 0
-    totalLength = len(txt)
-    n = len(txt) - 1 # Dikurangi tanda tanya
-    for pattern in tokenizedString:
-        m = len(pattern)
+    n = len(txt) - 1 #Dikurangi tanda tanya
+    m = len(string1)
 
-        border = borderFunctionKMP(pattern,m)
+    wholeScore = m * 100 / n
+    if(wholeScore >= 90):
+        # Periksa seluruh string secara eksak
+        match = False
+        border = borderFunctionKMP(string1,m)
         i = 0
         j = 0
         while (i < n):
-            if (pattern[j] == txt[i]):
+            if (string1[j] == txt[i]):
                 i = i + 1
                 j = j + 1
 
             if (j == m):
                 #Pattern ditemukan
-                countMatch = countMatch + m + 1 #Ditambah sebuah spasi
+                match = True
                 j = border[j-1]
-            elif (i < n) and (pattern[j] != txt[i]):
+            elif (i < n) and (string1[j] != txt[i]):
                 #Tidak cocok, geser
                 if(j != 0):
                     j = border[j-1]
                 else:
                     i = i + 1
-    return (countMatch * 100.0 / totalLength)
+
+        if(match):
+            return wholeScore
+        else:
+            return 0
+    else:
+        tokenizedString = string1.split()
+        countMatch = 0
+        totalLength = len(txt)
+        n = len(txt) - 1 # Dikurangi tanda tanya
+        for pattern in tokenizedString:
+            m = len(pattern)
+
+            border = borderFunctionKMP(pattern,m)
+            i = 0
+            j = 0
+            while (i < n):
+                if (pattern[j] == txt[i]):
+                    i = i + 1
+                    j = j + 1
+
+                if (j == m):
+                    #Pattern ditemukan
+                    countMatch = countMatch + m + 1 #Ditambah sebuah spasi
+                    j = border[j-1]
+                elif (i < n) and (pattern[j] != txt[i]):
+                    #Tidak cocok, geser
+                    if(j != 0):
+                        j = border[j-1]
+                    else:
+                        i = i + 1
+        return (countMatch * 100.0 / totalLength)
 
 def maxKMP(string):
     #knuth-morris-Prat
@@ -97,13 +128,63 @@ def badCharBM(string):
     return badChar
 
 def boyerMoore(string1,txt):
-    tokenizedString = string1.split()
-    countMatch = 0
-    totalLength = len(txt)
-    n = len(txt) - 1
-    for pattern in tokenizedString:
-        m = len(pattern)
-    return 90
+    n = len(txt) - 1 #Dikurangi tanda tanya
+    m = len(string1)
+    wholeScore = m * 100 / n
+    if(wholeScore >= 90):
+        # Seluruh string dicocokan
+        badChar = badCharBM(string1)
+
+        match = False
+        shift = 0
+        while(shift <= n-m):
+            j = m - 1
+
+            while(j >= 0) and (string1[j] == txt[shift+j]):
+                j = j - 1
+
+            if(j < 0):
+                # Pattern ditemukan
+                match = True
+                if(shift + m < n):
+                    shift = shift + (m-badChar[ord(txt[shift+m])])
+                else:
+                    shift = 1
+            else:
+                shift = shift + max(1, j-badChar[ord(txt[shift+j])])
+        if(match):
+            return wholeScore
+        else:
+            return 0
+    else:
+        #Per substring
+        tokenizedString = string1.split()
+        countMatch = 0
+        totalLength = len(txt)
+        n = len(txt) - 1
+        for pattern in tokenizedString:
+            m = len(pattern)
+            badChar = badCharBM(pattern)
+
+            shift = 0
+            while(shift <= n-m):
+                j = m - 1
+
+                while(j >= 0) and (pattern[j] == txt[shift+j]):
+                    j = j - 1
+
+                if(j < 0):
+                    # Pattern ditemukan
+                    countMatch = countMatch + m + 1 #Ditambah sebuah spasi
+                    if(shift + m < n):
+                        shift = shift + (m-badChar[ord(txt[shift+m])])
+                    else:
+                        shift = 1
+                else:
+                    shift = shift + max(1, j-badChar[ord(txt[shift+j])])
+
+        return (countMatch * 100.0 / totalLength)
+
 
 def maxBM(str):
     #boyer moore
@@ -118,6 +199,7 @@ def maxBM(str):
 
     return (max, idx)
 
+# OTHER FUNCTION
 def otherFunc(string):
     #other algorithm for pattern matching
     max = 0
@@ -176,7 +258,7 @@ while(True):
     #print("Filtered string:")
     #print(string)
     kmpMaxVal, kmpIdx = maxKMP(string)
-    print("max = " + str(kmpMaxVal))
+    #print("max = " + str(kmpMaxVal))
     #print("idx = " + str(kmpIdx))
     if(kmpMaxVal >= 90):
         talk(answerDB[kmpIdx])
@@ -189,7 +271,7 @@ while(True):
         else:
             reMaxVal, reIdx = regex(string)
             if(reMaxVal >= 90):
-                print(answerDB[idx3])
+                print(answerDB[reIdx])
                 #print("Answered with Regular Expression")
             else:
                 #max, idx4 = otherFunc(string)
