@@ -268,12 +268,12 @@ while(True):
     else:
         bmMaxVal, bmIdx = maxBM(string)
         if(bmMaxVal >= 90):
-            print(answerDB[bmIdx])
+            talk(answerDB[bmIdx])
             #print("Answered with Boyer-Moore")
         else:
             reMaxVal, reIdx = regex(string)
             if(reMaxVal >= 90):
-                print(answerDB[reIdx])
+                talk(answerDB[reIdx])
                 #print("Answered with Regular Expression")
             else:
                 #max, idx4 = otherFunc(string)
