@@ -146,10 +146,11 @@ def boyerMoore(string1,txt):
             if(j < 0):
                 # Pattern ditemukan
                 match = True
-                if(shift + m < n):
-                    shift = shift + (m-badChar[ord(txt[shift+m])])
-                else:
-                    shift = 1
+                break
+                #if(shift + m < n):
+                    #shift = shift + (m-badChar[ord(txt[shift+m])])
+                #else:
+                    #shift = 1
             else:
                 shift = shift + max(1, j-badChar[ord(txt[shift+j])])
         if(match):
@@ -176,10 +177,11 @@ def boyerMoore(string1,txt):
                 if(j < 0):
                     # Pattern ditemukan
                     countMatch = countMatch + m + 1 #Ditambah sebuah spasi
-                    if(shift + m < n):
-                        shift = shift + (m-badChar[ord(txt[shift+m])])
-                    else:
-                        shift = 1
+                    break
+                    #if(shift + m < n):
+                        #shift = shift + (m-badChar[ord(txt[shift+m])])
+                    #else:
+                        #shift = 1
                 else:
                     shift = shift + max(1, j-badChar[ord(txt[shift+j])])
 
