@@ -34,10 +34,10 @@ def borderFunctionKMP(str, m):
 def knuthMorrisPrat(string1, txt):
     tokenizedString = string1.split()
     countMatch = 0
-    totalLength = len(txt) - 1 #Dikurangi tanda tanya
+    totalLength = len(txt)
+    n = len(txt) - 1 # Dikurangi tanda tanya
     for pattern in tokenizedString:
         m = len(pattern)
-        n = len(txt) - 1 # Dikurangi tanda tanya
 
         border = borderFunctionKMP(pattern,m)
         i = 0
@@ -80,7 +80,25 @@ def regex(string):
         #print(x.string)
     return 90, 0
 
-def boyerMoore(str1,str2):
+def badCharMB(string):
+    #Banyak jenis karakter = 256
+    #Diinisialisasi dengan -1
+    badChar = [-1]*256
+
+    m = len(string)
+    for i in range(m):
+        #Mengubah ke nilai char (tabel ASCII)
+        badChar[ord(string[i])] = i
+
+    return badChar
+
+def boyerMoore(string1,txt):
+    tokenizedString = string1.split()
+    countMatch = 0
+    totalLength = len(txt)
+    n = len(txt) - 1
+    for pattern in tokenizedString:
+        m = len(pattern)
     return 90
 
 def maxBM(str):
@@ -106,7 +124,7 @@ def initDB():
     #Add questions and answers to database
     global numOfQuestion
     numOfQuestion = 1
-    questionDB.append("Siapa nama ?")
+    questionDB.append("Siapa nama?")
     answerDB.append("Aku Zettary")
 
     quest = open("pertanyaan.txt","r")
