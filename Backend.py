@@ -11,6 +11,7 @@ answerDB = []
 #factory = StopWordRemoverFactory()
 #stopwords = factory.get_stop_words()
 
+# KNUTH MORRIS PRAT #
 def borderFunctionKMP(str, m):
     suffLen = 0
 
@@ -72,6 +73,8 @@ def maxKMP(string):
 
     return (max, idx)
 
+
+# REGULAR EXPRESSION #
 def regex(string):
     #Regular expression
     #for i in range(numOfQuestion):
@@ -80,7 +83,8 @@ def regex(string):
         #print(x.string)
     return 90, 0
 
-def badCharMB(string):
+# BOYER MOORE #
+def badCharBM(string):
     #Banyak jenis karakter = 256
     #Diinisialisasi dengan -1
     badChar = [-1]*256
@@ -172,7 +176,7 @@ while(True):
     #print("Filtered string:")
     #print(string)
     kmpMaxVal, kmpIdx = maxKMP(string)
-    #print("max = " + str(kmpMaxVal))
+    print("max = " + str(kmpMaxVal))
     #print("idx = " + str(kmpIdx))
     if(kmpMaxVal >= 90):
         talk(answerDB[kmpIdx])
