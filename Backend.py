@@ -305,4 +305,51 @@ def Main():
                     if((bmIdx != kmpIdx) and (bmIdx != reIdx)):
                         print(answerDB[reIdx])
 
-Main()
+#Debugging
+def DebugKMP():
+    initDB()
+    talk("Halo, ada yang bisa dibantu?")
+    while(True):
+        string = str(input("Anda : "))
+        if(string == "end"):
+            break
+        string = string.replace("?","")
+        string = removeStopWords(string)
+        print("Filtered string: "+string)
+        kmpMaxVal, kmpIdx = maxKMP(string)
+        print("max = " + str(kmpMaxVal))
+        print("idx = " + str(kmpIdx))
+        talk(answerDB[kmpIdx])
+        print("Answered with Knuth-Morris-Prat")
+
+def DebugBM():
+    initDB()
+    talk("Halo, ada yang bisa dibantu?")
+    while(True):
+        string = str(input("Anda : "))
+        if(string == "end"):
+            break
+        string = string.replace("?","")
+        string = removeStopWords(string)
+        bmMaxVal, bmIdx = maxBM(string)
+        print("max = " + str(bmMaxVal))
+        print("idx = " + str(bmIdx))
+        talk(answerDB[bmIdx])
+        print("Answered with Regular Expression")
+
+def DebugRegex():
+    initDB()
+    talk("Halo, ada yang bisa dibantu?")
+    while(True):
+        string = str(input("Anda : "))
+        if(string == "end"):
+            break
+        string = string.replace("?","")
+        string = removeStopWords(string)
+        reMaxVal, reIdx = regex(string)
+        print("max = " + str(reMaxVal))
+        print("idx = " + str(reIdx))
+        talk(answerDB[reIdx])
+        print("Answered with Boyer-Moore")
+
+#Main()
