@@ -1,5 +1,5 @@
 import re
-from Stopwords import stopwords
+from utils import stopwords
 #from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 #from ntlk.corpus import stopwords
 #from ntlk.tokenize import word_tokenize
