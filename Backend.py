@@ -12,6 +12,32 @@ answerDB = []
 #stopwords = factory.get_stop_words()
 
 # KNUTH MORRIS PRAT #
+def bigThree(value,idxes):
+    #Mengembalikan indeks indeks dengan nilai terbesar
+    newIdxes = [0]*3
+    #SelectionSort
+    for i in range(3):
+        max = 0
+        maxIdx = -1
+        for j in range(i,len(idxes)):
+            if(value[j] > max):
+                max = value[j]
+                maxIdx = j
+        #Swap
+        temp = idxes[i]
+        idxes[i] = idxes[maxIdx]
+        idxes[maxIdx] = temp
+
+        temp = value[i]
+        value[i] = value[maxIdx]
+        value[maxIdx] = temp
+
+
+    for i in range(3):
+        newIdxes[i] = idxes[i]
+
+    return newIdxes
+
 def borderFunctionKMP(str, m):
     suffLen = 0
 
@@ -106,12 +132,14 @@ def maxKMP(string):
     maxIdx = -1
     countOfResult = 0
     idxes = []
+    maxValues =[]
     for i in range(numOfQuestion):
         # Kode
         x = knuthMorrisPrat(string,questionDB[i])
         if(x >= 90):
             #Ketemu
             countOfResult = countOfResult + 1
+            maxValues.append(x)
             idxes.append(i)
         if(x > max):
             max = x
@@ -120,17 +148,9 @@ def maxKMP(string):
     if(countOfResult == 0):
         if(maxIdx != -1):
             idxes.append(maxIdx)
+    elif(countOfResult > 3):
+        idxes = bigThree(maxValues,idxes)
     return (countOfResult, idxes)
-
-
-# REGULAR EXPRESSION #
-def regex(string):
-    #Regular expression
-    #for i in range(numOfQuestion):
-        #Change this later
-        #x = re.search(string,questionDB[i])
-        #print(x.string)
-    return (0, [])
 
 # BOYER MOORE #
 def badCharBM(string):
@@ -207,6 +227,7 @@ def maxBM(str):
     maxIdx = -1
     countOfResult = 0
     idxes = []
+    maxValues = []
     for i in range(numOfQuestion):
         # Kode
         x = boyerMoore(str,questionDB[i])
@@ -221,6 +242,54 @@ def maxBM(str):
     if(countOfResult == 0):
         if(maxIdx != -1):
             idxes.append(maxIdx)
+    elif(countOfResult > 3):
+        idxes = bigThree(maxValues,idxes)
+    return (countOfResult, idxes)
+
+# REGULAR EXPRESSION #
+def buildString(tokenizedString, line, j):
+    stringBuilt = "(.*)"
+    for i in range(len(tokenizedString)):
+        if(i == j):
+            stringBuilt = stringBuilt + line + "(.*)"
+        else:
+            stringBuilt = stringBuilt + tokenizedString[i] + "(.*)"
+
+def regex(string):
+    #Regular expression
+    maxIdx = -1
+    max = 0
+    countOfResult = 0
+    idxes = []
+    maxValues = []
+    for i in range(numOfQuestion):
+        #Change this later
+        tokenizedString = string.split()
+        j = 0
+        for substring in tokenizedString:
+            substringSynonyms = findSynonym(substring)
+            for line in substringSynonyms:
+                pattern = buildString(tokenizedString, line, j)
+                x = re.search(string,questionDB[i],re.M)
+                if(x):
+                    score = len(string) * 100.0 / len(questionDB[i])
+                    countOfResult += 1
+                    maxValues.append(score)
+                    idxes.append(i)
+                    if(score >= max):
+                        max = score
+                    break #BreakFor
+
+            if(x):
+                break #BreakFor
+            else:
+                j += 1
+
+    if(countOfResult == 0):
+        if(maxIdx != -1):
+            idxes.append(maxIdx)
+    elif(countOfResult > 3):
+        idxes = bigThree(maxValues,idxes)
     return (countOfResult, idxes)
 
 # OTHER FUNCTION
