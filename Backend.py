@@ -64,7 +64,7 @@ def knuthMorrisPrat(string1, txt):
 
     match = False
     wholeScore = m * 100 / n
-    if(wholeScore >= 90):
+    if(wholeScore >= 90) and (wholeScore <= 100):
         # Periksa seluruh string secara eksak
         border = borderFunctionKMP(string1,m)
         i = 0
@@ -126,9 +126,9 @@ def knuthMorrisPrat(string1, txt):
                     break #BreakFor
         return (countMatch * 100.0 / totalLength)
 
-def maxKMP(string):
+def resultKMP(string):
     #knuth-morris-Prat
-    max = 0
+    max = -1
     maxIdx = -1
     countOfResult = 0
     idxes = []
@@ -150,7 +150,7 @@ def maxKMP(string):
             idxes.append(maxIdx)
     elif(countOfResult > 3):
         idxes = bigThree(maxValues,idxes)
-    return (countOfResult, idxes)
+    return ((countOfResult > 0), idxes)
 
 # BOYER MOORE #
 def badCharBM(string):
@@ -170,7 +170,7 @@ def boyerMoore(string1,txt):
     m = len(string1)
     wholeScore = m * 100 / n
     match = False
-    if(wholeScore >= 90):
+    if(wholeScore >= 90) and (wholeScore <= 100):
         # Seluruh string dicocokan
         badChar = badCharBM(string1)
         shift = 0
@@ -221,9 +221,9 @@ def boyerMoore(string1,txt):
             return (countMatch * 100.0 / totalLength)
 
 
-def maxBM(str):
+def resultBM(str):
     #boyer moore
-    max = 0
+    max = -1
     maxIdx = -1
     countOfResult = 0
     idxes = []
@@ -244,7 +244,7 @@ def maxBM(str):
             idxes.append(maxIdx)
     elif(countOfResult > 3):
         idxes = bigThree(maxValues,idxes)
-    return (countOfResult, idxes)
+    return ((countOfResult > 0), idxes)
 
 # REGULAR EXPRESSION #
 def buildString(tokenizedString, line, j):
@@ -255,10 +255,10 @@ def buildString(tokenizedString, line, j):
         else:
             stringBuilt = stringBuilt + tokenizedString[i] + "(.*)"
 
-def regex(string):
+def resultRegex(string):
     #Regular expression
     maxIdx = -1
-    max = 0
+    max = -1
     countOfResult = 0
     idxes = []
     maxValues = []
@@ -290,7 +290,7 @@ def regex(string):
             idxes.append(maxIdx)
     elif(countOfResult > 3):
         idxes = bigThree(maxValues,idxes)
-    return (countOfResult, idxes)
+    return ((countOfResult > 0), idxes)
 
 # OTHER FUNCTION
 def otherFunc(string):
@@ -303,7 +303,7 @@ def initDB():
     #Add questions and answers to database
     global numOfQuestion
     numOfQuestion = 1
-    questionDB.append("Siapa nama ")
+    questionDB.append("Siapa nama Anda")
     answerDB.append("Aku Fluffball")
 
     quest = open("pertanyaan.txt","r")
@@ -370,70 +370,69 @@ def talk(string):
     print("Fluffball : "+string)
 
 # Main program #
+def useKMP(string):
+    found, listHasil = resultKMP(string)
+    tampikanHasil(found,listHasil)
+
+def useBM(string):
+    found, listHasil = resultBM(string)
+    tampikanHasil(found,listHasil)
+
+def useRegex(string):
+    found, listHasil = resultRegex(string)
+    tampikanHasil(found,listHasil)
+
+def tampikanHasil(found, listHasil):
+    if(found):
+        if(len(listHasil) == 1):
+            talk(answerDB[listHasil[0]])
+        else: #len(listHasil) > 1
+            talk("Pilih pertanyaan di bawah ini (1 s.d. " + str(len(listHasil)) +")")
+            j = 1
+            for i in listHasil:
+                print(str(j)+" "+questionDB[i])
+                j += 1
+            choice = int(input("Anda : "))
+            while(choice < 1) or (choice > len(listHasil)):
+                talk("Invalid input!! Masukkan kembali pilihan Anda")
+                choice = int(input("Anda : "))
+
+            talk(answerDB[listHasil[choice-1]])
+
+    else:
+        talk("Mungkin maksud Anda")
+        if(len(listHasil) == 0):
+            for i in range(3):
+                print(questionDB[i]+"?")
+        else:
+            print(questionDB[listHasil[0]]+"?")
+
 def DebugAll():
     initDB()
     talk("Halo, ada yang bisa dibantu?")
+    talk("Pilih metode pencarian")
+    print("1. Knuth-Morris-Prat")
+    print("2. Boyer-Moore")
+    print("3. Regular expression")
+
+    choice = int(input("Anda : "))
     while(True):
-        string = str(input("Anda : "))
-        if(string == "end"):
-            break
-        string = string.replace("?","")
-        string = removeStopWords(string)
-        print("Filtered string: " + string)
+        if(choice >= 1) and (choice <= 3):
+            string = str(input("Anda : "))
+            if(string == "end"):
+                break
+            string = string.replace("?","")
+            string = removeStopWords(string)
 
-        #KMP
-        hasilKMP, listHasilKMP = maxKMP(string)
-        print("\n#### KMP ####")
-        print("Banyak ditemukan = " + str(hasilKMP))
-        print("Indeks : ")
-        print(listHasilKMP)
-
-        #BM
-        hasilBM, listHasilBM = maxKMP(string)
-        print("\n#### BM ####")
-        print("Banyak ditemukan = " + str(hasilBM))
-        print("Indeks : ")
-        print(listHasilBM)
-
-        #Regex
-        hasilRE, listHasilRE = regex(string)
-        print("\n#### RE ####")
-        print("Indeks : ")
-        print(listHasilRE)
-        print("")
-
-        listHasilTotal = list(set(listHasilKMP + listHasilBM))
-        listHasilTotal = list(set(listHasilTotal + listHasilRE))
-        hasilTotal = hasilKMP + hasilBM + hasilRE
-
-        if(len(listHasilTotal) == 0):
-            #hasilTotal == 0, panjang listHasilTotal <= 0
-            talk("Aku tidak mengerti maksud Anda, coba hal lain")
-        elif(hasilTotal == 0):
-            #Tidak menemukan hasil sama sekali
-            talk("Mungkin maksud Anda:")
-            j = 0
-            for i in listHasilTotal:
-                if(j > 2):
-                    break
-                print(questionDB[i])
-                j += 1
-        elif(len(listHasilTotal) == 1):
-            #hasilTotal != 0, dan hasil yang ditemukan tepat satu buah
-            talk(answerDB[listHasilTotal[0]])
-        elif(len(listHasilTotal) >= 1):
-            #hasilTotal != 0, dan hasil yang ditemukan lebih dari satu
-            talk("Pilih di antara pertanyaan-pertanyaan ini")
-            j = 0
-            for i in listHasilTotal:
-                if(j > 2):
-                    break
-                print(questionDB[i])
-                j += 1
-
-
-
-
+            if(choice == 1):
+                useKMP(string)
+            elif(choice == 2):
+                useBM(string)
+            elif(choice == 3):
+                useRegex(string)
+        else:
+            talk("Invalid input!! Masukkan kembali pilihan Anda")
+            choice = int(input("Anda : "))
 
 DebugAll()
 #DebugKMP()
