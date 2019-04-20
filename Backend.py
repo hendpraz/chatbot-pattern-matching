@@ -1,5 +1,5 @@
 import re
-from utils import stopwords, listSynonym
+from utils import stopwords, listSynonym, FAQs
 #from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 #from ntlk.corpus import stopwords
 #from ntlk.tokenize import word_tokenize
@@ -68,27 +68,37 @@ def knuthMorrisPrat(string1, txt):
         countMatch = 0
         totalLength = len(txt)
         n = len(txt) - 1 # Dikurangi tanda tanya
-        for pattern in tokenizedString:
-            m = len(pattern)
 
-            border = borderFunctionKMP(pattern,m)
-            i = 0
-            j = 0
-            while (i < n):
-                if (pattern[j] == txt[i]):
-                    i = i + 1
-                    j = j + 1
+        for substring in tokenizedString:
+            #Cari setiap sinonimnya
+            listOfPattern = findSynonym(substring)
+            for pattern in listOfPattern:
+                m = len(pattern)
 
-                if (j == m):
-                    #Pattern ditemukan
-                    countMatch = countMatch + m + 1 #Ditambah sebuah spasi
-                    j = border[j-1]
-                elif (i < n) and (pattern[j] != txt[i]):
-                    #Tidak cocok, geser
-                    if(j != 0):
-                        j = border[j-1]
-                    else:
+                border = borderFunctionKMP(pattern,m)
+                patternMatch = False
+                i = 0
+                j = 0
+                while (i < n):
+                    if (pattern[j] == txt[i]):
                         i = i + 1
+                        j = j + 1
+
+                    if (j == m):
+                        #Pattern ditemukan
+                        countMatch = countMatch + m + 1 #Ditambah sebuah spasi
+                        j = border[j-1]
+                        patternMatch = True
+                        break #BreakWhile
+                    elif (i < n) and (pattern[j] != txt[i]):
+                        #Tidak cocok, geser
+                        if(j != 0):
+                            j = border[j-1]
+                        else:
+                            i = i + 1
+
+                if(patternMatch):
+                    break #BreakFor
         return (countMatch * 100.0 / totalLength)
 
 def maxKMP(string):
@@ -146,7 +156,7 @@ def boyerMoore(string1,txt):
             if(j < 0):
                 # Pattern ditemukan
                 match = True
-                break
+                break #BreakWhile
                 #if(shift + m < n):
                     #shift = shift + (m-badChar[ord(txt[shift+m])])
                 #else:
@@ -163,29 +173,38 @@ def boyerMoore(string1,txt):
         countMatch = 0
         totalLength = len(txt)
         n = len(txt) - 1
-        for pattern in tokenizedString:
-            m = len(pattern)
-            badChar = badCharBM(pattern)
+        for substring in tokenizedString:
+            #Cari setiap sinonimnya
+            listOfPattern = findSynonym(substring)
 
-            shift = 0
-            while(shift <= n-m):
-                j = m - 1
+            patternMatch = False
+            for pattern in listOfPattern:
+                m = len(pattern)
+                badChar = badCharBM(pattern)
 
-                while(j >= 0) and (pattern[j] == txt[shift+j]):
-                    j = j - 1
+                shift = 0
+                while(shift <= n-m):
+                    j = m - 1
 
-                if(j < 0):
+                    while(j >= 0) and (pattern[j] == txt[shift+j]):
+                        j = j - 1
+
+                    if(j < 0):
                     # Pattern ditemukan
-                    countMatch = countMatch + m + 1 #Ditambah sebuah spasi
-                    break
+                        countMatch = countMatch + m + 1 #Ditambah sebuah spasi
+                        patternMatch = True
+                        break #BreakWhile
                     #if(shift + m < n):
                         #shift = shift + (m-badChar[ord(txt[shift+m])])
                     #else:
                         #shift = 1
-                else:
-                    shift = shift + max(1, j-badChar[ord(txt[shift+j])])
+                    else:
+                        shift = shift + max(1, j-badChar[ord(txt[shift+j])])
 
-        return (countMatch * 100.0 / totalLength)
+                if(patternMatch):
+                    break #BreakFor
+
+            return (countMatch * 100.0 / totalLength)
 
 
 def maxBM(str):
@@ -229,6 +248,13 @@ def initDB():
     quest.close()
     ans.close()
 
+    #Add FAQs
+    for tuple in FAQs:
+        quest, answer = tuple
+        questionDB.append(removeStopWords(quest.strip()))
+        answerDB.append(answer.strip())
+
+
 def removeStopWords(string):
     filteredString = ""
     wordTokens = string.split()
@@ -242,7 +268,7 @@ def removeStopWords(string):
                 found = True
     return filteredString
 
-def findSinonim(string):
+def findSynonym(string):
     #Mencari sinonim dari suatu string
     found = False
     idx = -1
@@ -308,7 +334,7 @@ def Main():
 #Debugging
 def DebugKMP():
     initDB()
-    talk("Halo, ada yang bisa dibantu?")
+    talk("Halo, ada yang bisa dibantu? *KMP*")
     while(True):
         string = str(input("Anda : "))
         if(string == "end"):
@@ -320,11 +346,10 @@ def DebugKMP():
         print("max = " + str(kmpMaxVal))
         print("idx = " + str(kmpIdx))
         talk(answerDB[kmpIdx])
-        print("Answered with Knuth-Morris-Prat")
 
 def DebugBM():
     initDB()
-    talk("Halo, ada yang bisa dibantu?")
+    talk("Halo, ada yang bisa dibantu? *BM*")
     while(True):
         string = str(input("Anda : "))
         if(string == "end"):
@@ -335,11 +360,10 @@ def DebugBM():
         print("max = " + str(bmMaxVal))
         print("idx = " + str(bmIdx))
         talk(answerDB[bmIdx])
-        print("Answered with Regular Expression")
 
 def DebugRegex():
     initDB()
-    talk("Halo, ada yang bisa dibantu?")
+    talk("Halo, ada yang bisa dibantu? *REGEX*")
     while(True):
         string = str(input("Anda : "))
         if(string == "end"):
@@ -350,6 +374,5 @@ def DebugRegex():
         print("max = " + str(reMaxVal))
         print("idx = " + str(reIdx))
         talk(answerDB[reIdx])
-        print("Answered with Boyer-Moore")
 
 #Main()
