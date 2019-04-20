@@ -1,5 +1,5 @@
 import re
-from utils import stopwords
+from utils import stopwords, listSynonym
 #from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 #from ntlk.corpus import stopwords
 #from ntlk.tokenize import word_tokenize
@@ -245,10 +245,19 @@ def removeStopWords(string):
 def findSinonim(string):
     #Mencari sinonim dari suatu string
     found = False
+    idx = -1
+    for listOfWords in listSynonym:
+        idx = idx + 1
+        for word in listOfWords:
+            if(string == word):
+                found = True
+                break
+        if(found):
+            break
 
     if(found):
-        # Jika ada sinonimnya, kembalikan list of Synonim
-        return listSynonim[idx]
+        # Jika ada sinonimnya, kembalikan list of Synonym ke-idx
+        return listSynonym[idx]
     else:
         # Jika tidak ada sinonimnya, kembalikan list berisi string itu sendiri
         listOneWord = []
@@ -258,41 +267,42 @@ def findSinonim(string):
 def talk(string):
     print("Zettary : "+string)
 
-#C:\Users\admin\Anaconda3\Scripts
-
 # Main program #
-initDB()
-talk("Halo, ada yang bisa dibantu?")
-while(True):
-    string = str(input("Anda : "))
-    if(string == "end"):
-        break
-    string = string.replace("?","")
-    string = removeStopWords(string)
+def Main():
+    initDB()
+    talk("Halo, ada yang bisa dibantu?")
+    while(True):
+        string = str(input("Anda : "))
+        if(string == "end"):
+            break
+        string = string.replace("?","")
+        string = removeStopWords(string)
     # DEBUG:
     #print("Filtered string:")
     #print(string)
-    kmpMaxVal, kmpIdx = maxKMP(string)
+        kmpMaxVal, kmpIdx = maxKMP(string)
     #print("max = " + str(kmpMaxVal))
     #print("idx = " + str(kmpIdx))
-    if(kmpMaxVal >= 90):
-        talk(answerDB[kmpIdx])
+        if(kmpMaxVal >= 90):
+            talk(answerDB[kmpIdx])
         #print("Answered with Knuth-Morris-Prat")
-    else:
-        bmMaxVal, bmIdx = maxBM(string)
-        if(bmMaxVal >= 90):
-            talk(answerDB[bmIdx])
-            #print("Answered with Boyer-Moore")
         else:
-            reMaxVal, reIdx = regex(string)
-            if(reMaxVal >= 90):
-                talk(answerDB[reIdx])
-                #print("Answered with Regular Expression")
+            bmMaxVal, bmIdx = maxBM(string)
+            if(bmMaxVal >= 90):
+                talk(answerDB[bmIdx])
+            #print("Answered with Boyer-Moore")
             else:
+                reMaxVal, reIdx = regex(string)
+                if(reMaxVal >= 90):
+                    talk(answerDB[reIdx])
+                #print("Answered with Regular Expression")
+                else:
                 #max, idx4 = otherFunc(string)
-                print("Mungkin maksud Anda :")
-                print(answerDB[idx1])
-                if(idx1 != idx2):
-                    print(answerDB[idx2])
-                if((idx2 != idx1) and (idx2 != idx3)):
-                    print(answerDB[idx3])
+                    print("Mungkin maksud Anda :")
+                    print(answerDB[kmpIdx])
+                    if(bmIdx != kmpIdx):
+                        print(answerDB[bmIdx])
+                    if((bmIdx != kmpIdx) and (bmIdx != reIdx)):
+                        print(answerDB[reIdx])
+
+Main()
