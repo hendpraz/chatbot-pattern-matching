@@ -36,10 +36,10 @@ def knuthMorrisPrat(string1, txt):
     n = len(txt) - 1 #Dikurangi tanda tanya
     m = len(string1)
 
+    match = False
     wholeScore = m * 100 / n
     if(wholeScore >= 90):
         # Periksa seluruh string secara eksak
-        match = False
         border = borderFunctionKMP(string1,m)
         i = 0
         j = 0
@@ -61,9 +61,8 @@ def knuthMorrisPrat(string1, txt):
 
         if(match):
             return wholeScore
-        else:
-            return 0
-    else:
+
+    if(not match):
         tokenizedString = string1.split()
         countMatch = 0
         totalLength = len(txt)
@@ -141,11 +140,11 @@ def boyerMoore(string1,txt):
     n = len(txt) - 1 #Dikurangi tanda tanya
     m = len(string1)
     wholeScore = m * 100 / n
+    match = False
     if(wholeScore >= 90):
         # Seluruh string dicocokan
         badChar = badCharBM(string1)
 
-        match = False
         shift = 0
         while(shift <= n-m):
             j = m - 1
@@ -165,9 +164,8 @@ def boyerMoore(string1,txt):
                 shift = shift + max(1, j-badChar[ord(txt[shift+j])])
         if(match):
             return wholeScore
-        else:
-            return 0
-    else:
+
+    if(not match):
         #Per substring
         tokenizedString = string1.split()
         countMatch = 0
@@ -213,7 +211,7 @@ def maxBM(str):
     idx = -1
     for i in range(numOfQuestion):
         # Kode
-        x = boyerMoore(string,questionDB[i])
+        x = boyerMoore(str,questionDB[i])
         if(x > max):
             max = x
             idx = i
@@ -231,13 +229,16 @@ def initDB():
     #Add questions and answers to database
     global numOfQuestion
     numOfQuestion = 1
-    questionDB.append("Siapa nama?")
+    questionDB.append("Siapa nama ")
     answerDB.append("Aku Zettary")
 
     quest = open("pertanyaan.txt","r")
     for line in quest:
         numOfQuestion = numOfQuestion + 1
-        questionDB.append(removeStopWords(line.strip()))
+        questString = line
+        questString = questString.replace("?","")
+        questString = removeStopWords(questString.strip()) + " "
+        questionDB.append(questString)
 
     ans = open("jawaban.txt","r")
     for line in ans:
@@ -250,7 +251,7 @@ def initDB():
 
     #Add FAQs
     for tuple in FAQs:
-        quest, answer = tuple
+        que, ans = tuple
         questionDB.append(removeStopWords(quest.strip()))
         answerDB.append(answer.strip())
 
@@ -343,6 +344,7 @@ def DebugKMP():
         string = removeStopWords(string)
         print("Filtered string: "+string)
         kmpMaxVal, kmpIdx = maxKMP(string)
+        print("Match = " + questionDB[kmpIdx])
         print("max = " + str(kmpMaxVal))
         print("idx = " + str(kmpIdx))
         talk(answerDB[kmpIdx])
@@ -357,6 +359,7 @@ def DebugBM():
         string = string.replace("?","")
         string = removeStopWords(string)
         bmMaxVal, bmIdx = maxBM(string)
+        print("Match = " + questionDB[bmIdx])
         print("max = " + str(bmMaxVal))
         print("idx = " + str(bmIdx))
         talk(answerDB[bmIdx])
@@ -371,8 +374,10 @@ def DebugRegex():
         string = string.replace("?","")
         string = removeStopWords(string)
         reMaxVal, reIdx = regex(string)
+        print("Match = " + questionDB[reIdx])
         print("max = " + str(reMaxVal))
         print("idx = " + str(reIdx))
         talk(answerDB[reIdx])
 
 #Main()
+DebugKMP()
