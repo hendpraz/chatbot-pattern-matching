@@ -103,15 +103,24 @@ def knuthMorrisPrat(string1, txt):
 def maxKMP(string):
     #knuth-morris-Prat
     max = 0
-    idx = -1
+    maxIdx = -1
+    countOfResult = 0
+    idxes = []
     for i in range(numOfQuestion):
         # Kode
         x = knuthMorrisPrat(string,questionDB[i])
-        if(x >= max):
+        if(x >= 90):
+            #Ketemu
+            countOfResult = countOfResult + 1
+            idxes.append(i)
+        if(x > max):
             max = x
-            idx = i
+            maxIdx = i
 
-    return (max, idx)
+    if(countOfResult == 0):
+        if(maxIdx != -1):
+            idxes.append(maxIdx)
+    return (countOfResult, idxes)
 
 
 # REGULAR EXPRESSION #
@@ -121,7 +130,7 @@ def regex(string):
         #Change this later
         #x = re.search(string,questionDB[i])
         #print(x.string)
-    return 90, 0
+    return (0, [])
 
 # BOYER MOORE #
 def badCharBM(string):
@@ -144,11 +153,9 @@ def boyerMoore(string1,txt):
     if(wholeScore >= 90):
         # Seluruh string dicocokan
         badChar = badCharBM(string1)
-
         shift = 0
         while(shift <= n-m):
             j = m - 1
-
             while(j >= 0) and (string1[j] == txt[shift+j]):
                 j = j - 1
 
@@ -156,10 +163,6 @@ def boyerMoore(string1,txt):
                 # Pattern ditemukan
                 match = True
                 break #BreakWhile
-                #if(shift + m < n):
-                    #shift = shift + (m-badChar[ord(txt[shift+m])])
-                #else:
-                    #shift = 1
             else:
                 shift = shift + max(1, j-badChar[ord(txt[shift+j])])
         if(match):
@@ -174,7 +177,6 @@ def boyerMoore(string1,txt):
         for substring in tokenizedString:
             #Cari setiap sinonimnya
             listOfPattern = findSynonym(substring)
-
             patternMatch = False
             for pattern in listOfPattern:
                 m = len(pattern)
@@ -183,7 +185,6 @@ def boyerMoore(string1,txt):
                 shift = 0
                 while(shift <= n-m):
                     j = m - 1
-
                     while(j >= 0) and (pattern[j] == txt[shift+j]):
                         j = j - 1
 
@@ -192,13 +193,8 @@ def boyerMoore(string1,txt):
                         countMatch = countMatch + m + 1 #Ditambah sebuah spasi
                         patternMatch = True
                         break #BreakWhile
-                    #if(shift + m < n):
-                        #shift = shift + (m-badChar[ord(txt[shift+m])])
-                    #else:
-                        #shift = 1
                     else:
                         shift = shift + max(1, j-badChar[ord(txt[shift+j])])
-
                 if(patternMatch):
                     break #BreakFor
 
@@ -208,15 +204,24 @@ def boyerMoore(string1,txt):
 def maxBM(str):
     #boyer moore
     max = 0
-    idx = -1
+    maxIdx = -1
+    countOfResult = 0
+    idxes = []
     for i in range(numOfQuestion):
         # Kode
         x = boyerMoore(str,questionDB[i])
+        if(x >= 90):
+            #Ketemu
+            countOfResult = countOfResult + 1
+            idxes.append(i)
         if(x > max):
             max = x
-            idx = i
+            maxIdx = i
 
-    return (max, idx)
+    if(countOfResult == 0):
+        if(maxIdx != -1):
+            idxes.append(maxIdx)
+    return (countOfResult, idxes)
 
 # OTHER FUNCTION
 def otherFunc(string):
@@ -230,7 +235,7 @@ def initDB():
     global numOfQuestion
     numOfQuestion = 1
     questionDB.append("Siapa nama ")
-    answerDB.append("Aku Zettary")
+    answerDB.append("Aku Fluffball")
 
     quest = open("pertanyaan.txt","r")
     for line in quest:
@@ -251,9 +256,10 @@ def initDB():
 
     #Add FAQs
     for tuple in FAQs:
+        numOfQuestion = numOfQuestion + 1
         que, ans = tuple
-        questionDB.append(removeStopWords(quest.strip()))
-        answerDB.append(answer.strip())
+        questionDB.append(removeStopWords(que) + " ")
+        answerDB.append(ans)
 
 
 def removeStopWords(string):
@@ -292,10 +298,10 @@ def findSynonym(string):
         return listOneWord
 
 def talk(string):
-    print("Zettary : "+string)
+    print("Fluffball : "+string)
 
 # Main program #
-def Main():
+def DebugAll():
     initDB()
     talk("Halo, ada yang bisa dibantu?")
     while(True):
@@ -304,80 +310,63 @@ def Main():
             break
         string = string.replace("?","")
         string = removeStopWords(string)
-    # DEBUG:
-    #print("Filtered string:")
-    #print(string)
-        kmpMaxVal, kmpIdx = maxKMP(string)
-    #print("max = " + str(kmpMaxVal))
-    #print("idx = " + str(kmpIdx))
-        if(kmpMaxVal >= 90):
-            talk(answerDB[kmpIdx])
-        #print("Answered with Knuth-Morris-Prat")
-        else:
-            bmMaxVal, bmIdx = maxBM(string)
-            if(bmMaxVal >= 90):
-                talk(answerDB[bmIdx])
-            #print("Answered with Boyer-Moore")
-            else:
-                reMaxVal, reIdx = regex(string)
-                if(reMaxVal >= 90):
-                    talk(answerDB[reIdx])
-                #print("Answered with Regular Expression")
-                else:
-                #max, idx4 = otherFunc(string)
-                    print("Mungkin maksud Anda :")
-                    print(answerDB[kmpIdx])
-                    if(bmIdx != kmpIdx):
-                        print(answerDB[bmIdx])
-                    if((bmIdx != kmpIdx) and (bmIdx != reIdx)):
-                        print(answerDB[reIdx])
+        print("Filtered string: " + string)
 
-#Debugging
-def DebugKMP():
-    initDB()
-    talk("Halo, ada yang bisa dibantu? *KMP*")
-    while(True):
-        string = str(input("Anda : "))
-        if(string == "end"):
-            break
-        string = string.replace("?","")
-        string = removeStopWords(string)
-        print("Filtered string: "+string)
-        kmpMaxVal, kmpIdx = maxKMP(string)
-        print("Match = " + questionDB[kmpIdx])
-        print("max = " + str(kmpMaxVal))
-        print("idx = " + str(kmpIdx))
-        talk(answerDB[kmpIdx])
+        #KMP
+        hasilKMP, listHasilKMP = maxKMP(string)
+        print("\n#### KMP ####")
+        print("Banyak ditemukan = " + str(hasilKMP))
+        print("Indeks : ")
+        print(listHasilKMP)
 
-def DebugBM():
-    initDB()
-    talk("Halo, ada yang bisa dibantu? *BM*")
-    while(True):
-        string = str(input("Anda : "))
-        if(string == "end"):
-            break
-        string = string.replace("?","")
-        string = removeStopWords(string)
-        bmMaxVal, bmIdx = maxBM(string)
-        print("Match = " + questionDB[bmIdx])
-        print("max = " + str(bmMaxVal))
-        print("idx = " + str(bmIdx))
-        talk(answerDB[bmIdx])
+        #BM
+        hasilBM, listHasilBM = maxKMP(string)
+        print("\n#### BM ####")
+        print("Banyak ditemukan = " + str(hasilBM))
+        print("Indeks : ")
+        print(listHasilBM)
 
-def DebugRegex():
-    initDB()
-    talk("Halo, ada yang bisa dibantu? *REGEX*")
-    while(True):
-        string = str(input("Anda : "))
-        if(string == "end"):
-            break
-        string = string.replace("?","")
-        string = removeStopWords(string)
-        reMaxVal, reIdx = regex(string)
-        print("Match = " + questionDB[reIdx])
-        print("max = " + str(reMaxVal))
-        print("idx = " + str(reIdx))
-        talk(answerDB[reIdx])
+        #Regex
+        hasilRE, listHasilRE = regex(string)
+        print("\n#### RE ####")
+        print("Indeks : ")
+        print(listHasilRE)
+        print("")
 
-#Main()
-DebugKMP()
+        listHasilTotal = list(set(listHasilKMP + listHasilBM))
+        listHasilTotal = list(set(listHasilTotal + listHasilRE))
+        hasilTotal = hasilKMP + hasilBM + hasilRE
+
+        if(len(listHasilTotal) == 0):
+            #hasilTotal == 0, panjang listHasilTotal <= 0
+            talk("Aku tidak mengerti maksud Anda, coba hal lain")
+        elif(hasilTotal == 0):
+            #Tidak menemukan hasil sama sekali
+            talk("Mungkin maksud Anda:")
+            j = 0
+            for i in listHasilTotal:
+                if(j > 2):
+                    break
+                print(questionDB[i])
+                j += 1
+        elif(len(listHasilTotal) == 1):
+            #hasilTotal != 0, dan hasil yang ditemukan tepat satu buah
+            talk(answerDB[listHasilTotal[0]])
+        elif(len(listHasilTotal) >= 1):
+            #hasilTotal != 0, dan hasil yang ditemukan lebih dari satu
+            talk("Pilih di antara pertanyaan-pertanyaan ini")
+            j = 0
+            for i in listHasilTotal:
+                if(j > 2):
+                    break
+                print(questionDB[i])
+                j += 1
+
+
+
+
+
+DebugAll()
+#DebugKMP()
+#DebugBM()
+#DebugRegex

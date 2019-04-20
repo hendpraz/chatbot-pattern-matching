@@ -4,4 +4,4 @@ stopwords = ['a', 'ada', 'adalah', 'adanya', 'adapun', 'agak', 'agaknya', 'agar'
 
 listSynonym = [['jumlah','total'], ['minimal','minimum'], ['membuat','membangun','mendirikan'], ['dilaksanakan', 'dilangsungkan', 'diselenggarakan', 'dilakukan','digelar'],['pembuat','pencipta','penggarap','pembangun'],['pemain','kontestan']]
 
-FAQs = []
+FAQs = [('Apa itu python ','Python adalah bahasa pemrograman interpreted, interaktif, dan berorientasi objek')]
