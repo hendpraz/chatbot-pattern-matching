@@ -242,6 +242,19 @@ def removeStopWords(string):
                 found = True
     return filteredString
 
+def findSinonim(string):
+    #Mencari sinonim dari suatu string
+    found = False
+
+    if(found):
+        # Jika ada sinonimnya, kembalikan list of Synonim
+        return listSynonim[idx]
+    else:
+        # Jika tidak ada sinonimnya, kembalikan list berisi string itu sendiri
+        listOneWord = []
+        listOneWord.append(string)
+        return listOneWord
+
 def talk(string):
     print("Zettary : "+string)
 
