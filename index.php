@@ -8,6 +8,7 @@
         <link rel="shortcut icon" href="./images/snowyOwl01.png" type="image/x-icon"/>
         <title>Chat with Fluffball</title>
     </head>
+    
     <body>
         <h2 style = "color: white"><b>Chat with Fluffball</b></h2>
 
@@ -169,24 +170,26 @@
                     fclose($chatLogFile);
                 }
             ?>
-            <script>
-                function scrollDownChat() {
-                    var elmnt = document.getElementById("MainChatBox");
-                    elmnt.scrollTop = elmt.scrollHeight;
-                }
-            </script>
         </div>
 
-        <div onLoad="scrollDownChat();">
+        <div>
             <form action="index.php" method="POST" style = "margin-left = 200px">
                 <table border="0">
                     <tr>
-                        <td><input type="text" name="chat" size="100" /></td>
+                        <td><input type="text" name="chat" size="100" placeholder = "Type your chat here" autofocus/></td>
                         <td><input type="submit" value="Send"/></td>
                     </tr>
                 </table>
             </form>
         </div>
 
+        <script type="text/javascript">
+            function scrollDownChat() {
+                var elmnt = document.getElementById("MainChatBox");
+                elmnt.scrollTop = 9999999;
+            }
+
+            window.onload = scrollDownChat; 
+        </script>
     </body>
 </html>

@@ -1,8 +1,9 @@
 body {
     /* margin: 0 auto; */
     /* background-color: teal; */
-    background-image: url("./images/SnowWallpaper2.jpg");
-    background-size: 100%;
+    background-image: url("./images/SnowWallpaperHuge.jpg");
+    background-size: cover;
+    background-repeat: no-repeat; /* Do not repeat the image */
     max-width: 800px;
     padding: 0 20px;
     font-family: Arial;
@@ -22,11 +23,7 @@ body {
     margin: 5px auto;
     border-radius: 5px;
 }
-/* 
-@media (min-width: 300px) { .chatbox {width: 90%} } 
-@media (min-width: 480px) { .chatbox {width: 410px} } 
-@media (min-width: 640px) { .chatbox {width: 570px} } 
-@media (min-width: 800px) { .chatbox {width: 700px} }  */
+
 @media (min-width:960px) { .chatbox {width: 800px} } 
 @media (min-width:1100px) { .chatbox {width: 1000px} }
 
