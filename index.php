@@ -66,11 +66,11 @@
 
         <div class="chatbox">
             <?php
-                $chatLogFile = fopen("chatLog.txt", "r");
+                $chatLogFile = fopen("chatLog.txt", "r+");
                 $chatLog = array();
                 $shade = true;
                 $i = 0;
-
+                //Tampilkan chat yang telah ada
                 while (!feof($chatLogFile)) {
                     if ($shade) {
                         array_push($chatLog, fgets($chatLogFile));
@@ -93,22 +93,102 @@
                     $shade = !$shade;
                 }
 
+                //Tampilkan pertanyaan pertama
+                $choicesFile = fopen("choices.txt","r");
+                while (!feof($choicesFile)){
+                  //Ambil choices terakhir
+                  $choice = intval(fgets($choicesFile));
+                }
+                fclose($choicesFile);
+
+                //Cek apakah choice == -1
+                if($choice == -1){
+                  $output = "Halo! Panduan menggunakan: Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'";
+                  array_push($chatLog, $output);
+                  echo
+                      "<div class=\"container\">
+                          <img src=\"./images/bot.png\" alt=\"Bot\" style=\"width:100%;\">
+                          <p>" . $output . "</p>
+                      </div>";
+                      fwrite($chatLogFile, "\n".trim($output));
+                }
+
                 fclose($chatLogFile);
 
                 if (isset($_POST['chat'])) {
+                    //Tulis ulang semua percakapan ke chatlog
                     $chatLogFile = fopen("chatLog.txt", "w");
-
                     $chat = $_POST['chat'];
                     for($num = 0; $num < count($chatLog); $num++)
                         fwrite($chatLogFile, $chatLog[$num]);
-                    fwrite($chatLogFile, "\n".$chat);
+                    fwrite($chatLogFile, "\n".trim($chat));
 
+                    //Tampilkan chat dari user
                     echo
                             "<div class=\"container darker\">
                                 <img src=\"./images/user.png\" alt=\"User\" class =\"right\" style=\"width:100%;\">
                                 <p class =\"right\">" . $chat . "</p>
                             </div>";
-                    fclose($chatLogFile);
+
+                    if(($choice == 0) || ($choice == -1)){
+                        if((intval($chat) >= 1) && (intval($chat) <= 3)){
+                            $choice = intval($chat);
+                            if($choice == 1){
+                              $output = "Silahkan tanyakan apa saja! *KMP*";
+                            } else if($choice == 2){
+                              $output = "Silahkan tanyakan apa saja! *BM*";
+                            } else{ //choice == 3
+                              $output = "Silahkan tanyakan apa saja! *Regex*";
+                            }
+                            $choicesFile = fopen("choices.txt","w");
+                            fwrite($choicesFile, $choice);
+                            fclose($choicesFile);
+
+                            array_push($chatLog, $output);
+                            echo
+                                "<div class=\"container\">
+                                    <img src=\"./images/bot.png\" alt=\"Bot\" style=\"width:100%;\">
+                                    <p>" . $output . "</p>
+                                </div>";
+                        } else{
+                          $output = "Input salah, masukkan angka 1 s.d. 3. 1: KMP, 2:BM, 3: Regex";
+                          array_push($chatLog, $output);
+                          echo
+                              "<div class=\"container\">
+                                  <img src=\"./images/bot.png\" alt=\"Bot\" style=\"width:100%;\">
+                                  <p>" . $output . "</p>
+                              </div>";
+                        }
+                        fwrite($chatLogFile, "\n".trim($output));
+                    } else{
+                      if($chat == "ganti"){
+                        $choicesFile = fopen("choices.txt","w");
+                        $output = "Halo! Panduan menggunakan: Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'";
+                      //array_push($chatLog, $output);
+                        echo
+                            "<div class=\"container\">
+                                <img src=\"./images/bot.png\" alt=\"Bot\" style=\"width:100%;\">
+                                <p>" . $output . "</p>
+                            </div>";
+                            fwrite($chatLogFile, "\n".trim($output));
+                        fwrite($choicesFile, "0");
+                        fclose($choicesFile);
+                      } else{
+
+                        //Lakukan pattern matching sesuai $choice
+                        //Debug
+                        $cmd = "py Backend.py " . $choice;
+                        $output = shell_exec($cmd);
+                        //array_push($chatLog, $output);
+                        echo
+                            "<div class=\"container\">
+                                <img src=\"./images/bot.png\" alt=\"Bot\" style=\"width:100%;\">
+                                <p>" . $output . "</p>
+                            </div>";
+                        fwrite($chatLogFile, "\n".trim($output));
+                      }
+                    }
+                  fclose($chatLogFile);
                 }
             ?>
         </div>

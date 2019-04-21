@@ -1,3 +1,6 @@
+#!/usr/bin/python
+
+import sys
 import re
 from utils import stopwords, listSynonym, FAQs
 #from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
@@ -385,27 +388,24 @@ def useRegex(string):
 def tampikanHasil(found, listHasil):
     if(found):
         if(len(listHasil) == 1):
-            talk(answerDB[listHasil[0]])
+            print(answerDB[listHasil[0]])
         else: #len(listHasil) > 1
-            talk("Pilih pertanyaan di bawah ini (1 s.d. " + str(len(listHasil)) +")")
-            j = 1
+            first = True
+            otp = ""
             for i in listHasil:
-                print(str(j)+" "+questionDB[i])
-                j += 1
-            choice = int(input("Anda : "))
-            while(choice < 1) or (choice > len(listHasil)):
-                talk("Invalid input!! Masukkan kembali pilihan Anda")
-                choice = int(input("Anda : "))
-
-            talk(answerDB[listHasil[choice-1]])
+                if(first):
+                    otp = questionDB[i].strip()+"?"
+                    first = False
+                else:
+                    otp = otp +", "+questionDB[i].strip()+"?"
+            print("Pilih pertanyaan ini : "+otp)
 
     else:
-        talk("Mungkin maksud Anda")
+        otp = "Mungkin maksud Anda : "
         if(len(listHasil) == 0):
-            for i in range(3):
-                print(questionDB[i]+"?")
+            print(otp + questionDB[i].strip()+"?")
         else:
-            print(questionDB[listHasil[0]]+"?")
+            print(otp + questionDB[listHasil[0]]+"?")
 
 def DebugAll():
     initDB()
@@ -434,7 +434,23 @@ def DebugAll():
             talk("Invalid input!! Masukkan kembali pilihan Anda")
             choice = int(input("Anda : "))
 
-DebugAll()
+def Execute():
+    initDB()
+    chatLog = open("chatLog.txt","r")
+    for line in chatLog:
+        getQuestion = line
+    getQuestion = getQuestion.strip()
+    getQuestion = getQuestion.replace("?","")
+    getQuestion = removeStopWords(getQuestion)
+    if(sys.argv[1] == '1'):
+        useKMP(getQuestion)
+    elif(sys.argv[1] == '2'):
+        useBM(getQuestion)
+    elif(sys.argv[1] == '3'):
+        useRegex(getQuestion)
+
+#DebugAll()
 #DebugKMP()
 #DebugBM()
 #DebugRegex
+Execute()
