@@ -1,0 +1,42 @@
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Apa itu The Python Software Foundation?
+The Python Software Foundation adalah organisasi nirlaba independen yang memegang hak cipta pada Python versi 2.1 dan yang lebih baru.
+Apakah ada batasan hak cipta untuk penggunaan Python?
+Anda dapat melakukan apa pun yang Anda inginkan dengan sumbernya, selama Anda meninggalkan hak cipta dan menampilkan hak cipta itu dalam dokumentasi apa pun tentang Python yang Anda hasilkan.
+Apa gunanya Python?
+Python adalah bahasa pemrograman tujuan umum tingkat tinggi yang dapat diterapkan ke banyak kelas masalah yang berbeda.
+Bagaimana cara kerja skema penomoran versi Python?
+Versi python diberi nomor A.B.C atau A.B. A adalah nomor versi utama - hanya bertambah untuk perubahan besar dalam bahasa. B adalah nomor versi minor, ditambahkan untuk perubahan yang lebih kecil. C adalah level mikro - ia bertambah untuk setiap rilis bugfix.
+Bagaimana cara mendapatkan salinan sumber Python?
+Distribusi sumber Python terbaru selalu tersedia dari python.org, di https://www.python.org/downloads/. Sumber pengembangan terbaru dapat diperoleh di https://github.com/python/cpython/.
+Bagaimana cara mendapatkan dokumentasi tentang Python?
+Dokumentasi standar untuk versi stabil Python saat ini tersedia di https://docs.python.org/3/. PDF, teks biasa, dan versi HTML yang dapat diunduh juga tersedia di https://docs.python.org/3/download.html.
+Saya belum pernah memprogram sebelumnya. Apakah ada tutorial Python?
+Ada banyak tutorial dan buku yang tersedia. Dokumentasi standar termasuk Tutorial Python. Konsultasikan pada Panduan Pemula untuk menemukan informasi untuk memulai programmer Python, termasuk daftar tutorial.
+Apakah ada newsgroup atau mailing list yang dikhususkan untuk Python?
+Ada newsgroup, comp.lang.python, dan milis, python-list. Newsgroup dan milis saling berhubungan satu sama lain - jika Anda dapat membaca berita, tidak perlu berlangganan ke milis. comp.lang.python adalah lalu lintas tinggi, menerima ratusan posting setiap hari, dan pembaca Usenet seringkali lebih mampu mengatasi volume ini.
+Bagaimana cara saya mendapatkan versi beta Python?
+Rilis alfa dan beta tersedia dari https://www.python.org/downloads/. Semua rilis diumumkan di comp.lang.python dan comp.lang.python.announce newsgroup dan di beranda Python di https://www.python.org/; umpan RSS berita tersedia.
+Bagaimana cara mengirim laporan bug dan tambalan untuk Python?
+Untuk melaporkan bug atau mengirimkan tambalan, silakan gunakan instalasi Roundup di https://bugs.python.org/.
+Apakah ada artikel yang diterbitkan tentang Python yang bisa saya rujuk?
+Mungkin lebih baik untuk mengutip buku favorit Anda tentang Python.
+Apakah ada buku tentang Python?
+Ya, ada banyak, dan lebih banyak lagi yang diterbitkan. Lihat wiki python.org di https://wiki.python.org/moin/PythonBooks untuk daftar bukunya.
+Di manakah www.python.org berada?
+Infrastruktur proyek Python terletak di seluruh dunia dan dikelola oleh Tim Infrastruktur Python.
+Mengapa disebut Python?
+Ketika mulai menerapkan Python, Guido van Rossum juga membaca skrip yang diterbitkan dari "Monty Python's Flying Circus", sebuah serial komedi BBC dari tahun 1970-an. Van Rossum berpikir dia membutuhkan nama yang pendek, unik, dan sedikit misterius, jadi dia memutuskan untuk memanggil bahasa Python.
+Seberapa stabilkah Python?
+Sangat stabil. Rilis baru yang stabil telah keluar kira-kira setiap 6 hingga 18 bulan sejak 1991, dan ini sepertinya akan terus berlanjut. Saat ini biasanya ada sekitar 18 bulan antara rilis utama.
+Berapa banyak orang yang menggunakan Python?
+Mungkin ada puluhan ribu pengguna, meskipun sulit untuk mendapatkan jumlah yang pasti.
+Apakah ada proyek signifikan yang dilakukan dengan Python?
+Lihat https://www.python.org/about/success untuk daftar proyek yang menggunakan Python. Konsultasi proses untuk konferensi Python masa lalu akan mengungkapkan kontribusi dari berbagai perusahaan dan organisasi.
+Perkembangan baru apa yang diharapkan untuk Python di masa depan?
+Lihat https://www.python.org/dev/peps/ untuk Proposal Peningkatan Python (PEPs). PEP adalah dokumen desain yang menggambarkan fitur baru yang disarankan untuk Python, memberikan spesifikasi teknis yang ringkas dan alasannya. Cari PEP berjudul "Jadwal Rilis Python X.Y", di mana X.Y adalah versi yang belum dirilis secara publik.
+Apakah masuk akal untuk mengusulkan perubahan yang tidak kompatibel ke Python?
+Secara umum, tidak. Sudah ada jutaan baris kode Python di seluruh dunia, sehingga setiap perubahan dalam bahasa yang membatalkan lebih dari sebagian kecil dari program yang ada harus diremehkan. Bahkan jika Anda dapat menyediakan program konversi, masih ada masalah untuk memperbarui semua dokumentasi; banyak buku telah ditulis tentang Python, dan kami tidak ingin membatalkan semuanya dengan satu stroke.
+Apakah Python adalah bahasa yang baik untuk pemrogram pemula?
+Iya.

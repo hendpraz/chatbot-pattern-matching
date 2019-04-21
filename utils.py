@@ -4,4 +4,15 @@ stopwords = ['a', 'ada', 'adalah', 'adanya', 'adapun', 'agak', 'agaknya', 'agar'
 
 listSynonym = [['jumlah','total'], ['minimal','minimum'], ['membuat','membangun','mendirikan'], ['dilaksanakan', 'dilangsungkan', 'diselenggarakan', 'dilakukan','digelar'],['pembuat','pencipta','penggarap','pembangun'],['pemain','kontestan']]
 
-FAQs = [('Apa itu python ','Python adalah bahasa pemrograman interpreted, interaktif, dan berorientasi objek')]
+#FAQs = [('Apa itu python ','Python adalah bahasa pemrograman interpreted, interaktif, dan berorientasi objek')]
+FAQs = []
+faqDB = open("faq.txt","r")
+i = 0
+string = ""
+for line in faqDB:
+    i += 1
+    if((i % 2) == 1):
+        string = line.replace("?"," ")
+    else:
+        #Append (question,answer)
+        FAQs.append((string,line))
