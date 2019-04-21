@@ -1,2 +1,17 @@
 Ini bot
 Ini user
+Halo! Panduan menggunakan: Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+Hai
+Input salah, masukkan angka 1 s.d. 3. 1: KMP, 2:BM, 3: RegexHalo! Panduan menggunakan: Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+1
+Silahkan tanyakan apa saja! *KMP*
+Hai, siapa kamu?
+Mungkin maksud Anda : Siapa nama Anda?
+Siapa nama Anda?
+Mungkin maksud Anda : Siapa nama Anda?
+Gila ya lu
+Mungkin maksud Anda : Pemilu diadakan setahun ?
+Pemilu diadakan setahun
+5 tahun sekali
+Kamu siapa?
+Mungkin maksud Anda : Siapa nama Anda?
