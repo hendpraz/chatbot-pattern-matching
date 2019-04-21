@@ -130,6 +130,7 @@
                                 <p class =\"right\">" . $chat . "</p>
                             </div>";
 
+					//Cek apakah pilihan algoritma sudah ada atau belum
                     if(($choice == 0) || ($choice == -1)){
                         if((intval($chat) >= 1) && (intval($chat) <= 3)){
                             $choice = intval($chat);
@@ -162,8 +163,9 @@
                         fwrite($chatLogFile, "\n".trim($output));
                     } else{
                       if($chat == "ganti"){
+						//ganti dengan algoritma lain
                         $choicesFile = fopen("choices.txt","w");
-                        $output = "Halo! Panduan menggunakan: Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'";
+                        $output = "Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'";
                       //array_push($chatLog, $output);
                         echo
                             "<div class=\"container\">
