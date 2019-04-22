@@ -6,7 +6,7 @@ Sistem Komunikasi Satelit Domestik
 4 Kali
 5 tahun sekali
 Christzen, Fata, Hendry
-<tuliskan stack yang dipakai>
+front-end: HTML, CSS, PHP, Javascript. Backend: python. Tools lain: XAMPP (dengan Apache) untuk server 
 DKI Jakarta
 Jayakarta
 Knuth-Morris-Prat
