@@ -62,12 +62,12 @@ def borderFunctionKMP(str, m):
     return border
 
 def knuthMorrisPrat(string1, txt):
-    n = len(txt) - 1 #Dikurangi tanda tanya
+    n = len(txt) #Dikurangi tanda tanya
     m = len(string1)
 
     match = False
     wholeScore = m * 100 / n
-    if(wholeScore >= 90) and (wholeScore <= 100):
+    if(wholeScore >= 90) and (wholeScore <= 110):
         # Periksa seluruh string secara eksak
         border = borderFunctionKMP(string1,m)
         i = 0
@@ -169,7 +169,7 @@ def badCharBM(string):
     return badChar
 
 def boyerMoore(string1,txt):
-    n = len(txt) - 1 #Dikurangi tanda tanya
+    n = len(txt) #Dikurangi tanda tanya
     m = len(string1)
     wholeScore = m * 100 / n
     match = False
