@@ -26,7 +26,7 @@ Apakah ada buku tentang Python?
 Ya, ada banyak, dan lebih banyak lagi yang diterbitkan. Lihat wiki python.org di https://wiki.python.org/moin/PythonBooks untuk daftar bukunya.
 Di manakah www.python.org berada?
 Infrastruktur proyek Python terletak di seluruh dunia dan dikelola oleh Tim Infrastruktur Python.
-Mengapa disebut Python?
+Apa asal nama Python?
 Ketika mulai menerapkan Python, Guido van Rossum juga membaca skrip yang diterbitkan dari "Monty Python's Flying Circus", sebuah serial komedi BBC dari tahun 1970-an. Van Rossum berpikir dia membutuhkan nama yang pendek, unik, dan sedikit misterius, jadi dia memutuskan untuk memanggil bahasa Python.
 Seberapa stabilkah Python?
 Sangat stabil. Rilis baru yang stabil telah keluar kira-kira setiap 6 hingga 18 bulan sejak 1991, dan ini sepertinya akan terus berlanjut. Saat ini biasanya ada sekitar 18 bulan antara rilis utama.

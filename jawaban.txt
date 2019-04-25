@@ -6,7 +6,7 @@ Sistem Komunikasi Satelit Domestik
 4 Kali
 5 tahun sekali
 Christzen, Fata, Hendry
-front-end: HTML, CSS, PHP, Javascript. Backend: python. Tools lain: XAMPP (dengan Apache) untuk server 
+front-end: HTML, CSS, PHP, Javascript. Backend: python. Tools lain: XAMPP (dengan Apache) untuk server
 DKI Jakarta
 Jayakarta
 Knuth-Morris-Prat
@@ -19,3 +19,8 @@ Tujuh orang
 Jl. Pegangsaan Timur No.56
 Kantin Borju
 Sultan Kudarat State University
+Penggunaan Python dengan paradigma pemrograman berorientasi objek
+Halo! Silakan tanya apapun
+Selamat siang!
+Selamat pagi!
+Selamat malam!

@@ -91,9 +91,9 @@ def knuthMorrisPrat(string1, txt):
         if(match):
             return wholeScore
 
+    countMatch = 0
     if(not match):
         tokenizedString = string1.split()
-        countMatch = 0
         totalLength = len(txt)
         n = len(txt) - 1 # Dikurangi tanda tanya
 
@@ -127,11 +127,19 @@ def knuthMorrisPrat(string1, txt):
 
                 if(patternMatch):
                     break #BreakFor
-        return (countMatch * 100.0 / totalLength)
+        if(wholeScore <= 110):
+            return (countMatch * 100.0 / totalLength)
+        elif(countMatch > 0):
+            return (totalLength * 100.0 / countMatch)
+        else:
+            return 0
+
+    #Kemungkinan lain
+    return 0
 
 def resultKMP(string):
     #knuth-morris-Prat
-    max = -1
+    max = 0
     maxIdx = -1
     countOfResult = 0
     idxes = []
@@ -173,7 +181,7 @@ def boyerMoore(string1,txt):
     m = len(string1)
     wholeScore = m * 100 / n
     match = False
-    if(wholeScore >= 90) and (wholeScore <= 100):
+    if(wholeScore >= 90) and (wholeScore <= 110):
         # Seluruh string dicocokan
         badChar = badCharBM(string1)
         shift = 0
@@ -221,12 +229,18 @@ def boyerMoore(string1,txt):
                 if(patternMatch):
                     break #BreakFor
 
+        if(wholeScore <= 110):
             return (countMatch * 100.0 / totalLength)
-
+        elif(countMatch > 0):
+            return (totalLength * 100.0 / countMatch)
+        else:
+            return 0
+    #kemungkinan lain
+    return 0
 
 def resultBM(str):
     #boyer moore
-    max = -1
+    max = 0
     maxIdx = -1
     countOfResult = 0
     idxes = []
@@ -261,7 +275,7 @@ def buildString(tokenizedString, line, j):
 def resultRegex(string):
     #Regular expression
     maxIdx = -1
-    max = -1
+    max = 0
     countOfResult = 0
     idxes = []
     maxValues = []
@@ -273,15 +287,16 @@ def resultRegex(string):
             substringSynonyms = findSynonym(substring)
             for line in substringSynonyms:
                 pattern = buildString(tokenizedString, line, j)
-                x = re.search(string,questionDB[i],re.M)
+                x = re.search(string,questionDB[i],re.M|re.I)
                 if(x):
                     score = len(string) * 100.0 / len(questionDB[i])
-                    countOfResult += 1
-                    maxValues.append(score)
-                    idxes.append(i)
-                    if(score >= max):
-                        max = score
-                    break #BreakFor
+                    if(score <= 110):
+                        countOfResult += 1
+                        maxValues.append(score)
+                        idxes.append(i)
+                        if(score > max):
+                            max = score
+                        break #BreakFor
 
             if(x):
                 break #BreakFor
@@ -403,7 +418,9 @@ def tampikanHasil(found, listHasil):
     else:
         otp = "Mungkin maksud Anda : "
         if(len(listHasil) == 0):
-            print(otp + questionDB[i].strip()+"?")
+            #Kalo tidak ada isinya sama sekali
+            print("Saya tidak mengerti maksud Anda")
+            #print(otp + questionDB[0].strip()+"?)
         else:
             print(otp + questionDB[listHasil[0]]+"?")
 

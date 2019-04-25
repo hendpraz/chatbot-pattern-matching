@@ -19,3 +19,8 @@ Berapa tahun Indonesia dijajah Jepang?
 Dimana Soekarno memproklamasikan kemerdekaan Indonesia?
 Dimana kantin terdekat Labtek 5?
 Apa kepanjangan SKSU?
+Apa itu Object-Oriented Python?
+Halo
+Selamat siang
+Selamat pagi
+Selamat malam

@@ -15,3 +15,227 @@ Pemilu diadakan setahun
 5 tahun sekali
 Kamu siapa?
 Mungkin maksud Anda : Siapa nama Anda?
+ganti
+Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+1
+Silahkan tanyakan apa saja! *KMP*
+Siapa nama Anda?
+Mungkin maksud Anda : Siapa nama Anda?
+Siapa nama Anda
+Mungkin maksud Anda : Siapa nama Anda?
+Siapa nama Anda?
+Mungkin maksud Anda : Siapa nama Anda?
+Siapa nama Anda?
+Aku Fluffball
+Siapa Anda?
+Mungkin maksud Anda : Siapa nama Anda?
+Siapa nama Anda?
+Aku Fluffball
+ganti
+Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+2
+Silahkan tanyakan apa saja! *BM*
+Siapa nama Anda?
+Aku Fluffball
+Apa kepanjangan SKS?
+Pilih pertanyaan ini : Apa kepanjangan SKSD?, Apa kepanjangan SKSU?
+Apa kepanj
+Mungkin maksud Anda : Apa Python ?
+Apa kepanjangan SKS?
+Pilih pertanyaan ini : Apa kepanjangan SKSD?, Apa kepanjangan SKSU?
+Apa kepanjangan SKSU?
+Sultan Kudarat State University
+Siapa nama Anda?
+Aku Fluffball
+Siapa saja pembuat anda?
+Christzen, Fata, Hendry
+Apa saja stack yang dipakai untuk membuat anda?
+<tuliskan stack yang dipakai>
+loh
+Mungkin maksud Anda : Siapa nama Anda?
+Apa saja stack yang dipakai untuk membuat anda?
+PHP untuk front-end, python untuk Backend, dan XAMPP (dengan Apache) untuk server
+Siapa saja pembuat anda?
+Christzen, Fata, Hendry
+Apa saja stack yang dipakai untuk membuat anda?
+front-end: HTML, CSS, PHP, Javascript. Backend: python. Tools lain: XAMPP (dengan Apache) untuk server
+Siapa saja pembuat anda?
+Christzen, Fata, Hendry
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Apa kepanjangan SKS?
+Pilih pertanyaan ini : Apa kepanjangan SKSD?, Apa kepanjangan SKSU?
+Apa kepanjangan SKSD?
+Sistem Komunikasi Satelit Domestik
+SKSD kepanjangan Apa?
+Mungkin maksud Anda : Apa kepanjangan SKSD ?
+SKSD kepanjangan Apa
+Mungkin maksud Anda : Apa kepanjangan SKSD ?
+2
+Mungkin maksud Anda : Siapa nama koordinator dosen kuliah strategi algoritma 2018/2019 ?
+ganti
+Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+2
+Silahkan tanyakan apa saja! *BM*
+Apa kepanjangan SKSU?
+Sultan Kudarat State University
+Apa SKSU kepanjangan?
+Mungkin maksud Anda : Apa Python ?
+Apa SKSU kepanjangan?
+Mungkin maksud Anda : Apa Python ?
+Apa kepanjangan SKSU
+Sultan Kudarat State University
+Tahun Indonesia merdeka berapa ?
+1945
+Siapa pemain catur
+Mungkin maksud Anda : Siapa nama Anda?
+ganti
+Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+Apa itu Python?
+Input salah, masukkan angka 1 s.d. 3. 1: KMP, 2:BM, 3: Regex
+1
+Silahkan tanyakan apa saja! *KMP*
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Apa itu python?
+Mungkin maksud Anda : Apa Python ?
+Apa Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Siapa anda?
+Mungkin maksud Anda : Siapa pembuat anda ?
+ganti
+Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+3
+Silahkan tanyakan apa saja! *Regex*
+Siapa Anda?
+
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+ganti
+Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+1
+Silahkan tanyakan apa saja! *KMP*
+SKSU kepanjangan Apa?
+Sultan Kudarat State University
+ganti
+Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+1
+Silahkan tanyakan apa saja! *KMP*
+Apa kepanjangan SKS?
+Pilih pertanyaan ini : Apa kepanjangan SKSD?, Apa kepanjangan SKSU?
+Apa kepanjangan SKSD?
+Sistem Komunikasi Satelit Domestik
+Apa itu
+Mungkin maksud Anda : Apa Python ?
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Siapa nama koordas strategi algorit?
+Kevin Andrian Liwinata
+Siapa nama koordas strategi?
+Mungkin maksud Anda : Siapa nama koordas strategi algoritma ?
+nama koordas Siapa algoritma strategi?
+Kevin Andrian Liwinata
+Entahlaaah
+Mungkin maksud Anda : Siapa nama Anda?
+ganti
+Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+3
+Silahkan tanyakan apa saja! *Regex*
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Apa kepanjangan SKS?
+Pilih pertanyaan ini : Apa kepanjangan SKSD?, Apa kepanjangan SKSU?
+Siapa saja pembuat anda?
+Christzen, Fata, Hendry
+Apa saja stack yang dipakai untuk membuat anda?
+front-end: HTML, CSS, PHP, Javascript. Backend: python. Tools lain: XAMPP (dengan Apache) untuk server
+Halo
+
+1
+Pilih pertanyaan ini : Siapa nama koordinator dosen kuliah strategi algoritma 2018/2019?, Berapa SKS minimal lulus S1 ITB?
+Siapa koordinator
+
+Siapa 2018/2019?
+
+ganti
+Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+1
+Silahkan tanyakan apa saja! *KMP*
+Apa saja?
+Mungkin maksud Anda : Apa Python ?
+Apa Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Apa itu OO Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Apa itu Object-Oriented Python?
+Pilih pertanyaan ini : Apa Object-Oriented Python?, Apa Python?
+Apa itu Object-Oriented Python?
+Pilih pertanyaan ini : Apa Object-Oriented Python?, Apa Python?
+Apa itu Object-Oriented Python?
+
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Apa itu Object-Oriented Python?
+
+Apa kepanjangan SKS?
+
+ganti
+Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+2
+Silahkan tanyakan apa saja! *BM*
+Apa kepanjangan SKS?
+
+Apa kepanjangan SKS?
+Pilih pertanyaan ini : Apa kepanjangan SKSD?, Apa kepanjangan SKSU?
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Apa itu Object-Oriented Python?
+Penggunaan Python dengan paradigma pemrograman berorientasi objek
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Test
+Mungkin maksud Anda : Siapa nama Anda?
+Test
+Saya tidak mengerti maksud Anda
+Haloooo
+Saya tidak mengerti maksud Anda
+Halo
+Halo! Silakan tanya apapun
+Pagi
+Saya tidak mengerti maksud Anda
+pagi
+Mungkin maksud Anda : Selamat pagi ?
+Selamat pagi
+Selamat pagi!
+ganti
+Masukkan angka 1 s.d. 3 untuk menggunakan algoritma 1: KMP, 2:BM, 3: Regex. Untuk mengganti algoritma yang digunakan, tulis 'ganti'
+3
+Silahkan tanyakan apa saja! *Regex*
+Apa Python?
+Pilih pertanyaan ini : Apa Python?, Mengapa Python?, Berapa Python?
+Apa gunanya Python?
+Python adalah bahasa pemrograman tujuan umum tingkat tinggi yang dapat diterapkan ke banyak kelas masalah yang berbeda.
+Apa Python?
+Pilih pertanyaan ini : Apa Python?, Mengapa Python?
+Apa itu Python?
+Pilih pertanyaan ini : Apa Python?, Mengapa Python disebut Python?
+Apa Python?
+Pilih pertanyaan ini : Apa Python?, Mengapa Python disebut Python?
+Apa Python?
+Pilih pertanyaan ini : Apa Python?, Mengapa Python disebut Python?
+Apa itu Python?
+Python adalah bahasa pemrograman yang diinterpretasi, interaktif, dan berorientasi objek.
+Apa asal nama Python?
+Ketika mulai menerapkan Python, Guido van Rossum juga membaca skrip yang diterbitkan dari "Monty Python's Flying Circus", sebuah serial komedi BBC dari tahun 1970-an. Van Rossum berpikir dia membutuhkan nama yang pendek, unik, dan sedikit misterius, jadi dia memutuskan untuk memanggil bahasa Python.
+Apa kepanjangan SKS?
+Pilih pertanyaan ini : Apa kepanjangan SKSD?, Apa kepanjangan SKSU?
+Apa kepanjangan SKSD?
+Sistem Komunikasi Satelit Domestik
+Apa kepanjangan SKSU?
+Sultan Kudarat State University
